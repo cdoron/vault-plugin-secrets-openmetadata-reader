@@ -2,7 +2,6 @@ package omsecrets
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/hashicorp/vault/sdk/logical"
@@ -23,12 +22,12 @@ func getTestBackend(t *testing.T) logical.Backend {
 	return b
 }
 
-func TestSecretNamespaceMissing(t *testing.T) {
+func TestGetSecret(t *testing.T) {
 	b := getTestBackend(t)
 
 	request := &logical.Request{
 		Operation: logical.ReadOperation,
-		Path:      fmt.Sprintf("%s/", secretsPrefix),
+		Path:      secretsPrefix,
 		Data:      make(map[string]interface{}),
 	}
 

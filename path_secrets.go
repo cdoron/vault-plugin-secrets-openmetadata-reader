@@ -40,7 +40,7 @@ func (b *secretsReaderBackend) handleRead(ctx context.Context, req *logical.Requ
 		return resp, nil
 	}
 
-	fetchedData, err := b.KubeSecretReader.GetSecret(ctx, secretName, b.Logger())
+	fetchedData, err := b.OMSecretReader.GetSecret(ctx, secretName, b.Logger())
 	if err != nil {
 		resp := logical.ErrorResponse("Error reading the secret data: " + err.Error())
 		return resp, nil

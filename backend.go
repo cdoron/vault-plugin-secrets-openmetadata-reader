@@ -12,7 +12,7 @@ import (
 // backend wraps the backend framework
 type secretsReaderBackend struct {
 	*framework.Backend
-	KubeSecretReader KubernetesSecretsReader
+	OMSecretReader OpenMetadataSecretsReader
 }
 
 var _ logical.Factory = Factory
@@ -37,7 +37,7 @@ func Factory(ctx context.Context, conf *logical.BackendConfig) (logical.Backend,
 
 func newBackend() (*secretsReaderBackend, error) { //nolint
 	b := &secretsReaderBackend{
-		KubeSecretReader: KubernetesSecretsReader{},
+		OMSecretReader: OpenMetadataSecretsReader{},
 	}
 
 	b.Backend = &framework.Backend{
