@@ -5,7 +5,7 @@ linters-settings:
     lines: 100
     statements: 50
   gci:
-    local-prefixes: fybrik.io/vault-plugin-secrets-openmetadata-reader
+    local-prefixes: github.com/cdoron/vault-plugin-secrets-openmetadata-reader
   goconst:
     min-len: 2
     min-occurrences: 2
@@ -25,7 +25,7 @@ linters-settings:
   gocyclo:
     min-complexity: 15
   goimports:
-    local-prefixes: fybrik.io/vault-plugin-secrets-openmetadata-reader
+    local-prefixes: github.com/cdoron/vault-plugin-secrets-openmetadata-reader
   gomnd:
     settings:
       mnd:

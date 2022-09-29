@@ -4,9 +4,10 @@ import (
 	"os"
 
 	"github.com/hashicorp/go-hclog"
-	omsecrets "github.com/cdoron/vault-plugin-secrets-openmetadata-reader"
 	"github.com/hashicorp/vault/api"
 	"github.com/hashicorp/vault/sdk/plugin"
+
+	omsecrets "github.com/cdoron/vault-plugin-secrets-openmetadata-reader"
 )
 
 func main() {
