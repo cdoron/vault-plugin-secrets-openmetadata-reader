@@ -32,9 +32,17 @@ func TestSecretNamespaceMissing(t *testing.T) {
 		Data:      make(map[string]interface{}),
 	}
 
-	errMsg := "Missing secret namespace"
 	resp, _ := b.HandleRequest(context.Background(), request)
-	if resp.Error().Error() != errMsg {
-		t.Errorf("Error must be '%s', get '%s'", errMsg, resp.Error())
+	if resp.Error() != nil {
+		t.Errorf("should not have gotten an error")
+	}
+
+	if len(resp.Data) != 1 {
+		t.Errorf("secret should have single field")
+	}
+
+	value, ok := resp.Data[Hello]
+	if !ok || value != World {
+		t.Errorf("wrong secret")
 	}
 }

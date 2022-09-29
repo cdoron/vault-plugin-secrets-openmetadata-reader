@@ -21,12 +21,6 @@ func pathSecrets(b *secretsReaderBackend) *framework.Path {
 				Query:       true,
 				Required:    true,
 			},
-			"namespace": {
-				Type:        framework.TypeString,
-				Description: "Specifies the name of the openmetadata secret namespace.",
-				Query:       true,
-				Required:    true,
-			},
 		},
 		Callbacks: map[logical.Operation]framework.OperationFunc{
 			logical.ReadOperation: b.handleRead,
@@ -35,24 +29,18 @@ func pathSecrets(b *secretsReaderBackend) *framework.Path {
 	}
 }
 
-// handleRead handles a read request: it extracts the secret name and namespace
+// handleRead handles a read request: it extracts the secret name
 // and returns the secret content if no error occured.
 func (b *secretsReaderBackend) handleRead(ctx context.Context, req *logical.Request, data *framework.FieldData) (*logical.Response, error) {
 	secretName := data.Get("secret_name").(string)
-	namespace := data.Get("namespace").(string)
-	b.Logger().Info("In handleRead() secretName: " + secretName + ", namespace: " + namespace)
+	b.Logger().Info("In handleRead() secretName: " + secretName)
 
 	if secretName == "" {
 		resp := logical.ErrorResponse("Missing secret name")
 		return resp, nil
 	}
 
-	if namespace == "" {
-		resp := logical.ErrorResponse("Missing secret namespace")
-		return resp, nil
-	}
-
-	fetchedData, err := b.KubeSecretReader.GetSecret(ctx, secretName, namespace, b.Logger())
+	fetchedData, err := b.KubeSecretReader.GetSecret(ctx, secretName, b.Logger())
 	if err != nil {
 		resp := logical.ErrorResponse("Error reading the secret data: " + err.Error())
 		return resp, nil
