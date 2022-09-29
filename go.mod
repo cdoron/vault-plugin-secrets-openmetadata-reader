@@ -1,4 +1,4 @@
-module github.com/cdoron/vault-plugin-openmetadata-secrets
+module github.com/cdoron/vault-plugin-secrets-openmetadata-reader
 
 go 1.13
 
