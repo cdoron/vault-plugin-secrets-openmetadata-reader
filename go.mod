@@ -1,4 +1,4 @@
-module github.com/hashicorp/vault-plugin-kubernetes-secrets
+module github.com/cdoron/vault-plugin-openmetadata-secrets
 
 go 1.13
 
