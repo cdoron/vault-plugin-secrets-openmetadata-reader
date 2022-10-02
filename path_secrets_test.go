@@ -1,3 +1,6 @@
+// Copyright 2022 IBM Corp.
+// SPDX-License-Identifier: Mozilla Public License 2.0
+
 package omsecrets
 
 import (
