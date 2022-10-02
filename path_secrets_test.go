@@ -22,26 +22,19 @@ func getTestBackend(t *testing.T) logical.Backend {
 	return b
 }
 
+const secretName = "openmetadata-s3" //nolint
+
 func TestGetSecret(t *testing.T) {
 	b := getTestBackend(t)
 
 	request := &logical.Request{
 		Operation: logical.ReadOperation,
-		Path:      secretsPrefix,
+		Path:      secretName,
 		Data:      make(map[string]interface{}),
 	}
 
 	resp, _ := b.HandleRequest(context.Background(), request)
 	if resp.Error() != nil {
 		t.Errorf("should not have gotten an error")
-	}
-
-	if len(resp.Data) != 1 {
-		t.Errorf("secret should have single field")
-	}
-
-	value, ok := resp.Data[Hello]
-	if !ok || value != World {
-		t.Errorf("wrong secret")
 	}
 }

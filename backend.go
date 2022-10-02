@@ -7,6 +7,8 @@ import (
 
 	"github.com/hashicorp/vault/sdk/framework"
 	"github.com/hashicorp/vault/sdk/logical"
+
+	client "fybrik.io/openmetadata-connector/datacatalog-go-client"
 )
 
 // backend wraps the backend framework
@@ -36,8 +38,16 @@ func Factory(ctx context.Context, conf *logical.BackendConfig) (logical.Backend,
 }
 
 func newBackend() (*secretsReaderBackend, error) { //nolint
+	conf := client.Configuration{Servers: client.ServerConfigurations{
+		client.ServerConfiguration{
+			URL:         "http://localhost:8585/api",
+			Description: "Endpoint URL",
+		},
+	},
+	}
+
 	b := &secretsReaderBackend{
-		OMSecretReader: OpenMetadataSecretsReader{},
+		OMSecretReader: OpenMetadataSecretsReader{client: client.NewAPIClient(&conf)},
 	}
 
 	b.Backend = &framework.Backend{
