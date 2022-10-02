@@ -7,9 +7,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/hashicorp/vault/sdk/logical"
-
 	"github.com/hashicorp/go-hclog"
+	"github.com/hashicorp/vault/sdk/logical"
 )
 
 func getTestBackend(t *testing.T) logical.Backend {

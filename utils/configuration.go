@@ -7,7 +7,7 @@ import "os"
 
 const (
 	OMServerURL        string = "OM_SERVER_URL"
-	DefaultOMServerURL string = "http://localhost:8585"
+	DefaultOMServerURL string = "http://localhost:8585/api"
 )
 
 // GetOMServerURL returns the OM server url

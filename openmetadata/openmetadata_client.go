@@ -8,6 +8,8 @@ import (
 
 	client "fybrik.io/openmetadata-connector/datacatalog-go-client"
 	"github.com/mitchellh/mapstructure"
+
+	"github.com/cdoron/vault-plugin-secrets-openmetadata-reader/utils"
 )
 
 type OMClient struct {
@@ -17,7 +19,7 @@ type OMClient struct {
 func NewOMClient() *client.APIClient {
 	conf := client.Configuration{Servers: client.ServerConfigurations{
 		client.ServerConfiguration{
-			URL:         "http://localhost:8585/api",
+			URL:         utils.GetOMServerURL(),
 			Description: "Endpoint URL",
 		},
 	},
